@@ -1,0 +1,60 @@
+.fixedheader {
+    left: 0px;
+    position: relative;
+    top: 0px;
+    font-size: 12px;
+}
+/* header 漸層*/
+.gv_HeaderCSSN {
+    font-size: 14px;
+    height: 20px;
+    font-weight: 100; /* 不設定粗體的話 標題字會太粗 */
+    background-image: url(../Image_File/gv_bk01.gif);
+}
+/* header 條紋*/
+.gv_HeaderCSSM {
+    font-size: 14px;
+    height: 20px;
+    font-weight: 100;
+    background-image: url(../Image_File/gv_bk02.gif);
+}
+/* header 深藍 字白字*/
+.gv_HeaderCSSB {
+    font-size: 14px;
+    height: 20px;
+    font-weight: 100;
+    color: #FFFFFF;
+    background-image: url(../Image_File/gv_bk03.gif);
+}
+
+.gv_ItemCSSG {
+    background-color: #EEFCF5;
+    height: 15px;
+    font-size: 9pt;
+    color: #000000;
+}
+
+.gv_ItemCSSB {
+    background-color: #EEEEFC;
+    height: 15px;
+    font-size: 9pt;
+    color: #000000;
+}
+
+.gv_ItemCSSR {
+    background-color: #FCEEEE;
+    height: 15px;
+    font-size: 9pt;
+    color: #000000;
+}
+
+.gv_SelectedRowCSS {
+    background-color: #80FF80;
+}
+
+.gv_FooterCSS {
+    background-color: #1FBBBD;
+    color: white;
+    height: 20px;
+    font-size: 9pt;
+}

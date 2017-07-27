@@ -1,0 +1,32 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.HtmlControls;
+
+public partial class Quotes : System.Web.UI.Page
+{
+    FactoryDBDataContext db = new FactoryDBDataContext();
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+     
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        tMember mb = Session[CDKey.LOGINUSER] as tMember;
+        
+       tAskPrice a = new tAskPrice();
+        a.fContent = Request.Form["descri"];
+        a.fIdMember = mb.fIdMember;
+        a.fTitle = "找"+ Request.Form["date"] +(Master.FindControl("ContentPlaceHolder1").FindControl("servies") as HtmlSelect).Value;
+        a.fSendTime = DateTime.Now;
+        db.tAskPrice.InsertOnSubmit(a);
+        db.SubmitChanges();
+        Response.Redirect("AskPrice.aspx");
+
+    }
+}

@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class test : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        string strMsg = "";
+
+        SqlConnection conn = new SqlConnection("Data Source=mywedding.cqb8null5yfs.ap-northeast-1.rds.amazonaws.com;Initial Catalog=myWedding;User Id=iiiSouth9402;Password=marcoLeonPower9402");
+        conn.Open();
+        SqlCommand command = new SqlCommand(
+          "SELECT a.fIdDiscussionReply, a.fIdTitle, a.fIdMember, a.fSendTime, a.fContent, b.fIdMember AS Expr1, b.fAccount, b.fPassword, b.fIdentity, b.fPhoto, b.fAddress, b.fEmail, b.fPhone, b.fName FROM tDiscussionReply AS a INNER JOIN tMember AS b ON a.fIdMember = b.fIdMember WHERE (a.fIdTitle = "+ Request["fIdTitle"] + ")",
+          conn);
+        SqlDataReader reader = command.ExecuteReader();
+
+        while (reader.Read())
+        {
+        
+           strMsg += "<div class=\"container\"><div class=\"well\"><div class=\"media\"><a class=\"pull-left\" href=\"#\"><img class=\"media-object\" src=\"http://placekitten.com/150/150\"></a><div class=\"media-body\"><h2 class=\"media-heading\">" + reader.GetString(1) + "</h2><p class=\"text-right\">" + reader.GetString(13) + "</p><p>" + reader.GetString(2) + "</p><ul class=\"list-inline list-unstyled\"></div></div></div></div>";
+
+            
+
+        }
+        Label1.Text = strMsg.ToString();
+
+        /* SqlDataAdapter da = new SqlDataAdapter("SELECT a.fIdTitle, CASE WHEN LEN(fTitle) > 12 THEN substring(fTitle, 1, 8) + '...' ELSE fTitle END AS fTitle, a.fContent, a.fSendTime,a.fIdMember, b.fIdMember, b.fAccount, b.fPassword, b.fIdentity, b.fPhoto, b.fAddress, b.fEmail, b.fPhone, b.fName FROM tDiscussion as a inner join tMember as b on a.fIdMember = b.fIdMember", conn);
+
+         Literal li = new Literal();
+         li.Text = "<script>alert('"+da.ToString()+"');</script>";
+         PlaceHolder1.Controls.Add(li);
+        */
+
+
+
+
+
+
+
+    }
+}

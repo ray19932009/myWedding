@@ -1,0 +1,79 @@
+﻿body {
+    background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+    min-height: 100vh;
+    font: normal 16px sans-serif;
+}
+.tz-gallery {
+    
+}
+
+.tz-gallery .thumbnail {
+      background-color: #FFF;
+    border-radius: 4px;
+    box-shadow: 0 8px 30px rgb(128, 128, 128);
+}
+
+.tz-gallery .thumbnail:hover {
+    transform: translateY(-10px) scale(1.02);
+}
+
+.tz-gallery .lightbox img {
+    border-radius: 4px 4px 0 0;
+}
+
+.tz-gallery .caption{
+    padding: 26px 30px;
+    text-align: center;
+}
+
+.tz-gallery .caption h3 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 0;
+}
+
+.tz-gallery .caption p {
+    font-size: 12px;
+    color: #7b7d7d;
+    margin: 0;
+}
+
+.baguetteBox-button {
+    background-color: transparent !important;
+}
+
+
+/*--------topNavi-------*/
+.breadcrumbLi {
+    padding: 10px;
+	background: #e6e9f0;
+	overflow: hidden;
+}
+
+.tz-gallery1 {
+  
+}
+.tz-gallery1 .thumbnail {
+   
+    background-color: #FFF;
+    border-radius: 4px;
+    box-shadow: 0 8px 30px rgb(128, 128, 128);
+}
+
+.tz-gallery1 .thumbnail:hover {
+    transform: translateY(-10px) scale(1.02);
+}
+
+.liselected{
+    color: #fff;
+	background:#d00b01;
+}
+.dark_btn
+{
+    font-size:20px;
+    height:100%;
+    width:100%;
+}
+.liClickLike:hover {
+     transform: translateY(-10px) scale(1.02);
+}

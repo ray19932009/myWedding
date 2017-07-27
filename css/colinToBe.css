@@ -1,0 +1,31 @@
+﻿	h1.title {
+		font-family: 'Roboto', sans-serif;
+		font-weight: 900;
+	}
+	.calendar {
+		margin: 1% 4%;
+	}
+	[data-toggle="calendar"] > .row > .calendar-day {
+		font-family: 'Roboto', sans-serif;
+		width: 14.28571428571429%;
+		border: 1px solid rgb(120, 120, 120);
+        border-radius:10px;
+		min-height: 240px;
+        min-width:150px;
+	}
+	[data-toggle="calendar"] > .row > .calendar-day.calendar-no-current-month {
+		color: rgb(200, 200, 200);
+	}
+
+	.calendar-day > time {
+		position: relative;
+		display: block;
+		bottom: 0px;
+		left: 0px;
+		font-size: 12px;
+		font-weight: bold;
+		width: 100%;
+		padding: 3px 0px 3px 0px;
+		text-align: right;
+        color:#00F;
+	}

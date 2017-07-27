@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="myWedding" Class="FactoryDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=mywedding.cqb8null5yfs.ap-northeast-1.rds.amazonaws.com;Initial Catalog=myWedding;Persist Security Info=True;User ID=iiiSouth9402" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="myWeddingConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tAnswerPrice" Member="tAnswerPrice">
+    <Type Name="tAnswerPrice">
+      <Column Name="fIdAnswerPrice" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fIdTitle" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fIdStore" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fContent" Type="System.String" DbType="NVarChar(2000) NOT NULL" CanBeNull="false" />
+      <Column Name="fSendTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fIdServices" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="tAskPrice_tAnswerPrice" Member="tAskPrice" ThisKey="fIdTitle" OtherKey="fIdTitle" Type="tAskPrice" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tStores" Member="tStores">
+    <Type Name="tStores">
+      <Column Name="fIdStores" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="fWebInfo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="fMobilePhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="fLineId" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="fHoliday" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="fOpeningTime" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="fPopularity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fDescription" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="fIdCity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tStores_tAvailableTime" Member="tAvailableTime" ThisKey="fIdStores" OtherKey="fIdStores" Type="tAvailableTime" />
+      <Association Name="tStores_tChat" Member="tChat" ThisKey="fIdStores" OtherKey="fIdStores" Type="tChat" />
+      <Association Name="tStores_tPush" Member="tPush" ThisKey="fIdStores" OtherKey="fIdStores" Type="tPush" />
+      <Association Name="tStores_tCollection" Member="tCollection" ThisKey="fIdStores" OtherKey="fIdStores" Type="tCollection" />
+      <Association Name="tStores_tCalendar" Member="tCalendar" ThisKey="fIdStores" OtherKey="fIdStores" Type="tCalendar" />
+      <Association Name="tStores_tServices" Member="tServices" ThisKey="fIdStores" OtherKey="fIdStores" Type="tServices" />
+      <Association Name="tCity_tStores" Member="tCity" ThisKey="fIdCity" OtherKey="fIdCity" Type="tCity" IsForeignKey="true" />
+      <Association Name="tMember_tStores" Member="tMember" ThisKey="fIdStores" OtherKey="fIdMember" Type="tMember" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tAskPrice" Member="tAskPrice">
+    <Type Name="tAskPrice">
+      <Column Name="fIdTitle" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fIdMember" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fContent" Type="System.String" DbType="NVarChar(2000) NOT NULL" CanBeNull="false" />
+      <Column Name="fTitle" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fSendTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fWantDay" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Association Name="tAskPrice_tAnswerPrice" Member="tAnswerPrice" ThisKey="fIdTitle" OtherKey="fIdTitle" Type="tAnswerPrice" />
+      <Association Name="tMember_tAskPrice" Member="tMember" ThisKey="fIdMember" OtherKey="fIdMember" Type="tMember" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tAvailableTime" Member="tAvailableTime">
+    <Type Name="tAvailableTime">
+      <Column Name="fIdAvailableTime" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fIdStores" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="fAvailableTime" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="tStores_tAvailableTime" Member="tStores" ThisKey="fIdStores" OtherKey="fIdStores" Type="tStores" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tChat" Member="tChat">
+    <Type Name="tChat">
+      <Column Name="fIdChat" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fIdMember" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fIdStores" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fSendTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="fMsg" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Association Name="tChat_tChatReply" Member="tChatReply" ThisKey="fIdChat" OtherKey="fIdChat" Type="tChatReply" />
+      <Association Name="tStores_tChat" Member="tStores" ThisKey="fIdStores" OtherKey="fIdStores" Type="tStores" IsForeignKey="true" />
+      <Association Name="tMember_tChat" Member="tMember" ThisKey="fIdMember" OtherKey="fIdMember" Type="tMember" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tChatReply" Member="tChatReply">
+    <Type Name="tChatReply">
+      <Column Name="fIdChatReply" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fIdChat" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fIdSender" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fSendTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="fContent" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Association Name="tChat_tChatReply" Member="tChat" ThisKey="fIdChat" OtherKey="fIdChat" Type="tChat" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tCity" Member="tCity">
+    <Type Name="tCity">
+      <Column Name="fIdCity" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fCity" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="tCity_tStores" Member="tStores" ThisKey="fIdCity" OtherKey="fIdCity" Type="tStores" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tDiscussion" Member="tDiscussion">
+    <Type Name="tDiscussion">
+      <Column Name="fIdTitle" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fTitle" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fContent" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="fSendTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="fIdMember" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="tDiscussion_tDiscussionReply" Member="tDiscussionReply" ThisKey="fIdTitle" OtherKey="fIdTitle" Type="tDiscussionReply" />
+      <Association Name="tMember_tDiscussion" Member="tMember" ThisKey="fIdMember" OtherKey="fIdMember" Type="tMember" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tDiscussionReply" Member="tDiscussionReply">
+    <Type Name="tDiscussionReply">
+      <Column Name="fIdDiscussionReply" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fIdTitle" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fIdMember" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fSendTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="fContent" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Association Name="tDiscussion_tDiscussionReply" Member="tDiscussion" ThisKey="fIdTitle" OtherKey="fIdTitle" Type="tDiscussion" IsForeignKey="true" />
+      <Association Name="tMember_tDiscussionReply" Member="tMember" ThisKey="fIdMember" OtherKey="fIdMember" Type="tMember" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tEvaluation" Member="tEvaluation">
+    <Type Name="tEvaluation">
+      <Column Name="fidEvaluation" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fidMember" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fStar" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fidServices" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fContent" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Association Name="tMember_tEvaluation" Member="tMember" ThisKey="fidMember" OtherKey="fIdMember" Type="tMember" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tFate" Member="tFate">
+    <Type Name="tFate">
+      <Column Name="fIdFate" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fYear" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="fMonth" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="fDate" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="fCanMarried" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fContent" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tGalleryPhoto" Member="tGalleryPhoto">
+    <Type Name="tGalleryPhoto">
+      <Column Name="fIdPhoto" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fIdGallery" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fPhoto" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Association Name="tGalleryPhoto_tServicesPic" Member="tServicesPic" ThisKey="fIdPhoto" OtherKey="fIdPhoto" Type="tServicesPic" />
+      <Association Name="tGallery_tGalleryPhoto" Member="tGallery" ThisKey="fIdGallery" OtherKey="fIdGallery" Type="tGallery" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tLetter" Member="tLetter">
+    <Type Name="tLetter">
+      <Column Name="fIdILetter" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fContent" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="fSendTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="fIdSender" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fIdReceiver" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fIsRead" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="fLetterOrChat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tMember_tLetter" Member="tMember" ThisKey="fIdReceiver" OtherKey="fIdMember" Type="tMember" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tManual" Member="tManual">
+    <Type Name="tManual">
+      <Column Name="fidManual" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fidServicesClass" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fTitle" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="fContent" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Association Name="tServicesClass_tManual" Member="tServicesClass" ThisKey="fidServicesClass" OtherKey="fIdServicesClass" Type="tServicesClass" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tMember" Member="tMember">
+    <Type Name="tMember">
+      <Column Name="fIdMember" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fAccount" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fPassword" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fIdentity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fPhoto" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="fAddress" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="fEmail" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="fPhone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="fName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="tMember_tStores" Member="tStores" ThisKey="fIdMember" OtherKey="fIdStores" Type="tStores" Cardinality="One" />
+      <Association Name="tMember_tAskPrice" Member="tAskPrice" ThisKey="fIdMember" OtherKey="fIdMember" Type="tAskPrice" />
+      <Association Name="tMember_tChat" Member="tChat" ThisKey="fIdMember" OtherKey="fIdMember" Type="tChat" />
+      <Association Name="tMember_tDiscussion" Member="tDiscussion" ThisKey="fIdMember" OtherKey="fIdMember" Type="tDiscussion" />
+      <Association Name="tMember_tDiscussionReply" Member="tDiscussionReply" ThisKey="fIdMember" OtherKey="fIdMember" Type="tDiscussionReply" />
+      <Association Name="tMember_tEvaluation" Member="tEvaluation" ThisKey="fIdMember" OtherKey="fidMember" Type="tEvaluation" />
+      <Association Name="tMember_tLetter" Member="tLetter" ThisKey="fIdMember" OtherKey="fIdReceiver" Type="tLetter" />
+      <Association Name="tMember_tPush" Member="tPush" ThisKey="fIdMember" OtherKey="fIdMember" Type="tPush" />
+      <Association Name="tMember_tLIkeServices1" Member="tLIkeServices1" ThisKey="fIdMember" OtherKey="fidMember" Type="tLIkeServices1" />
+      <Association Name="tMember_tLIkeServices" Member="tLIkeServices" ThisKey="fIdMember" OtherKey="fidMember" Type="tLIkeServices" />
+      <Association Name="tMember_tCollection" Member="tCollection" ThisKey="fIdMember" OtherKey="fIdMember" Type="tCollection" />
+      <Association Name="tMember_tCalendar" Member="tCalendar" ThisKey="fIdMember" OtherKey="fIdMember" Type="tCalendar" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tPush" Member="tPush">
+    <Type Name="tPush">
+      <Column Name="fIdPush" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fIdStores" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fIdMember" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fMsg" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Column Name="fSendTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tMember_tPush" Member="tMember" ThisKey="fIdMember" OtherKey="fIdMember" Type="tMember" IsForeignKey="true" />
+      <Association Name="tStores_tPush" Member="tStores" ThisKey="fIdStores" OtherKey="fIdStores" Type="tStores" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tServicesClass" Member="tServicesClass">
+    <Type Name="tServicesClass">
+      <Column Name="fIdServicesClass" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="tServicesClass_tManual" Member="tManual" ThisKey="fIdServicesClass" OtherKey="fidServicesClass" Type="tManual" />
+      <Association Name="tServicesClass_tServicesSubClass" Member="tServicesSubClass" ThisKey="fIdServicesClass" OtherKey="fIdServicesClass" Type="tServicesSubClass" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tServicesPic" Member="tServicesPic">
+    <Type Name="tServicesPic">
+      <Column Name="fIdServicesPic" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fIdServices" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fIdPhoto" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="tGalleryPhoto_tServicesPic" Member="tGalleryPhoto" ThisKey="fIdPhoto" OtherKey="fIdPhoto" Type="tGalleryPhoto" IsForeignKey="true" />
+      <Association Name="tServices_tServicesPic" Member="tServices" ThisKey="fIdServices" OtherKey="fIdServices" Type="tServices" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tServicesSubClass" Member="tServicesSubClass">
+    <Type Name="tServicesSubClass">
+      <Column Name="fIdServicesSubClass" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fIdServicesClass" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="tServicesSubClass_tServices" Member="tServices" ThisKey="fIdServicesSubClass" OtherKey="fIdSubServicesClass" Type="tServices" />
+      <Association Name="tServicesClass_tServicesSubClass" Member="tServicesClass" ThisKey="fIdServicesClass" OtherKey="fIdServicesClass" Type="tServicesClass" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tLIkeServices" Member="tLIkeServices1">
+    <Type Name="tLIkeServices1">
+      <Column Name="fidLIkeServices" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fidMember" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fidServices" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="flikeStar" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tMember_tLIkeServices1" Member="tMember" ThisKey="fidMember" OtherKey="fIdMember" Type="tMember" IsForeignKey="true" />
+      <Association Name="tServices_tLIkeServices1" Member="tServices" ThisKey="fidServices" OtherKey="fIdServices" Type="tServices" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tLIkeServices" Member="tLIkeServices">
+    <Type Name="tLIkeServices">
+      <Column Name="fidLIkeServices" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fidMember" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fidServices" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="tMember_tLIkeServices" Member="tMember" ThisKey="fidMember" OtherKey="fIdMember" Type="tMember" IsForeignKey="true" />
+      <Association Name="tServices_tLIkeServices" Member="tServices" ThisKey="fidServices" OtherKey="fIdServices" Type="tServices" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tCollection" Member="tCollection">
+    <Type Name="tCollection">
+      <Column Name="fIdCollectionStores" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fIdMember" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fIdStores" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="tMember_tCollection" Member="tMember" ThisKey="fIdMember" OtherKey="fIdMember" Type="tMember" IsForeignKey="true" />
+      <Association Name="tStores_tCollection" Member="tStores" ThisKey="fIdStores" OtherKey="fIdStores" Type="tStores" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tCalendar" Member="tCalendar">
+    <Type Name="tCalendar">
+      <Column Name="fIdCalendar" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fIdMember" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fIdStores" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fIdServices" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="fAccepted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="fOK" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Association Name="tMember_tCalendar" Member="tMember" ThisKey="fIdMember" OtherKey="fIdMember" Type="tMember" IsForeignKey="true" />
+      <Association Name="tStores_tCalendar" Member="tStores" ThisKey="fIdStores" OtherKey="fIdStores" Type="tStores" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tGallery" Member="tGallery">
+    <Type Name="tGallery">
+      <Column Name="fIdGallery" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="fIdServicesSubClass" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="fUploadTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="fIdPhotoCover" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fIdStores" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fDelete" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Association Name="tGallery_tGalleryPhoto" Member="tGalleryPhoto" ThisKey="fIdGallery" OtherKey="fIdGallery" Type="tGalleryPhoto" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tServices" Member="tServices">
+    <Type Name="tServices">
+      <Column Name="fIdServices" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fIdSubServicesClass" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fName" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="fMaxMoney" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fMinMoney" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fDescription" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="fIdStores" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="fUploadTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="fContent" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="fDelete" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Association Name="tServices_tServicesPic" Member="tServicesPic" ThisKey="fIdServices" OtherKey="fIdServices" Type="tServicesPic" />
+      <Association Name="tServices_tLIkeServices1" Member="tLIkeServices1" ThisKey="fIdServices" OtherKey="fidServices" Type="tLIkeServices1" />
+      <Association Name="tServices_tLIkeServices" Member="tLIkeServices" ThisKey="fIdServices" OtherKey="fidServices" Type="tLIkeServices" />
+      <Association Name="tServicesSubClass_tServices" Member="tServicesSubClass" ThisKey="fIdSubServicesClass" OtherKey="fIdServicesSubClass" Type="tServicesSubClass" IsForeignKey="true" />
+      <Association Name="tStores_tServices" Member="tStores" ThisKey="fIdStores" OtherKey="fIdStores" Type="tStores" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
